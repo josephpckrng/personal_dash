@@ -2,11 +2,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import './banner.css';
-import townImage from '../assets/town.jpg'; // Adjust the path as needed
-
+import townImage from '../assets/town.jpg';
 import { throttle } from 'lodash';
-
+import { useTheme } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 const Banner = () => {
+  const theme = useTheme(); // Use the useTheme hook to access the Chakra UI theme
   const [scrollY, setScrollY] = useState(0);
   const bannerRef = useRef();
 
@@ -48,12 +49,20 @@ const Banner = () => {
     <>
       <animated.div
         ref={bannerRef}
-        style={{ ...heightSpringProps }}
+        style={{
+          ...heightSpringProps,
+          // backgroundColor: theme.colors.primary[800], // Access Chakra UI theme color
+        }}
         className="banner-container"
       >
-        <animated.div style={textSpringProps} className="text-container">
-          <h1>Your Banner Text</h1>
-          <p>Additional text or description goes here.</p>
+         <animated.div className="text-container">
+          {/* Use Chakra UI Box component for styled text */}
+          <Box as="h1" fontSize="2.75rem" fontWeight="600" mb="10px">
+            Your Banner Text
+          </Box>
+          <Box fontSize="1rem">
+            Additional text or description goes here.
+          </Box>
         </animated.div>
         <animated.div style={imageSpringProps} className="image-container">
           <img src={townImage} alt="Banner Image" />

@@ -1,12 +1,14 @@
+
+
 .banner-container {
     overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #141414; 
     top: 0;
     z-index: 100;
+    backdrop-filter: brightness(0.75);
   }
   
   .image-container {
@@ -31,10 +33,11 @@
     font-size: 2.75rem;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #fff;
   }
   
   p {
     font-size: 1rem;
-    color: #fff;
   }
+
+
+
