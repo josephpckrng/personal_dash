@@ -14,6 +14,8 @@ const getMultiplierValue = (multiplier) => {
   }
 };
 
+
+
 const CricketScoreboard = () => {
   const [players, setPlayers] = useState([]);
   const [currentPlayer, setCurrentPlayer] = useState('');
@@ -48,11 +50,31 @@ const CricketScoreboard = () => {
 
   const handleScoreButtonClick = (playerIndex, value) => {
     const multiplierValue = getMultiplierValue(selectedMultiplier);
-    const points = value * multiplierValue;
+
+    // Deduct points based on the multiplier
+    const points = (selectedMultiplier === 'single' && value === 1) ? 1 : value * multiplierValue;
 
     if (points > 0 && players[playerIndex].remainingPoints >= points) {
-      updatePoints(playerIndex, points);
+      setPlayers((prevPlayers) => {
+        const updatedPlayers = [...prevPlayers];
+        const currentPlayer = { ...updatedPlayers[playerIndex] };
+
+        // Deduct points from the remainingPoints
+        currentPlayer.remainingPoints -= points;
+
+        // Update the player in the array
+        updatedPlayers[playerIndex] = currentPlayer;
+
+        return updatedPlayers;
+      });
     }
+  };
+
+
+  const optionStyles = {
+    single: { paddingLeft: '10px' }, // Adjust styling as needed
+    double: { paddingLeft: '10px' }, // Adjust styling as needed
+    triple: { paddingLeft: '10px' }, // Adjust styling as needed
   };
 
   return (
@@ -65,22 +87,24 @@ const CricketScoreboard = () => {
       <Button onClick={addPlayer}>Add Player</Button>
       {players.map((player, index) => (
         <Box key={`${player.name}-${index}`}>
-          <Text>{player.name}</Text>
+          <Text as="h2" fontSize="1.75rem" fontWeight="600" mb="10px">{player.name}</Text>
+          <Text as="h3" fontSize="1.75rem" fontWeight="600" mb="10px">Remaining Points: {player.remainingPoints}</Text>
           <Select
             value={selectedMultiplier}
             onChange={(e) => setSelectedMultiplier(e.target.value)}
           >
-            <option value="single">
-              <Box as="span" pr={2}>Single</Box> {/* Adjust styling as needed */}
+            <option value="single" style={optionStyles.single}>
+              Single
             </option>
-            <option value="double">
-              <Box as="span" pr={2}>Double</Box> {/* Adjust styling as needed */}
+            <option value="double" style={optionStyles.double}>
+              Double
             </option>
-            <option value="triple">
-              <Box as="span" pr={2}>Triple</Box> {/* Adjust styling as needed */}
+            <option value="triple" style={optionStyles.triple}>
+              Triple
             </option>
           </Select>
           <HStack spacing={2}>
+
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((number) => (
               <React.Fragment key={number}>
                 <Button
@@ -93,8 +117,8 @@ const CricketScoreboard = () => {
             ))}
           </HStack>
           <Button onClick={() => handleScoreButtonClick(index, 25)}>Bullseye</Button>
-          <Text>Remaining Points: {player.remainingPoints}</Text>
-          
+
+
         </Box>
       ))}
     </VStack>

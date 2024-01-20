@@ -39,5 +39,26 @@
     font-size: 1rem;
   }
 
+.cricket-container .css-o51fhk {
+  max-width: 80vw;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
+.cricket-container .css-1uodvt1 {
+  flex-wrap: wrap;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.cricket-container {
+  min-height: 50vh;
+}
+
+.css-1wq9qmd {
+  margin: 20px 0;
+}
 
