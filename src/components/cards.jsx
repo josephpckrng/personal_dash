@@ -10,6 +10,7 @@ import {
   Heading,
   Text,
   Center,
+  useColorMode,  // Import useColorMode here
 } from '@chakra-ui/react';
 import axios from 'axios';
 import './card.css';
@@ -17,6 +18,8 @@ import './card.css';
 const AnimatedCard = animated(Card);
 
 const Cards = () => {
+  const { colorMode } = useColorMode(); // Use useColorMode inside the component
+  const bgColor = colorMode === 'light' ? 'gray.200' : 'gray.500';
   const [repos, setRepos] = useState([]);
   const [scrollY, setScrollY] = useState(0);
   const [hoveredCards, setHoveredCards] = useState([]);
@@ -67,6 +70,7 @@ const Cards = () => {
         {repos.map((repo, index) => (
           <AnimatedCard
             key={repo.id}
+            bg={bgColor}
             style={{
               ...animatedProps,
               boxShadow: hoveredCards[index] ? '0px 10px 20px rgba(0, 0, 0, 0.2)' : 'none',

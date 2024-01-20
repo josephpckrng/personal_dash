@@ -2,5 +2,23 @@ header {
     position: fixed;
     z-index: 99;
     width: 100%;
-    padding-left: 60px !important;
+    padding: 40px !important;
+    z-index: 9992;
 }
+
+.card-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+  }

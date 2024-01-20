@@ -1,6 +1,8 @@
 .card-container {
     margin-top: -20vh;
-    height: 50vh;
+    height: 40vh;
+    position: relative;
+    z-index: 9991;
 }
 
 .card-container .css-gmuwbf {

@@ -8,9 +8,9 @@ const Header = () => {
 
   return (
     <Flex as="header" align="center" justify="space-between" p="4">
-  <Box as="h1" fontSize="2.75rem" fontWeight="600" mb="10px">
-            Your Banner Text
-          </Box>
+      <Box as="h1" fontSize="2.75rem" fontWeight="600" mb="10px">
+        PPP
+      </Box>
       <div>
         <Button onClick={toggleColorMode}>Toggle Color Mode</Button>
       </div>
