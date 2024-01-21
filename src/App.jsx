@@ -17,7 +17,7 @@ const App = () => {
       <Siteswiper />
       </div>
       <div className="cricket-container">
-        <CricketScoreboard />
+        {/* <CricketScoreboard /> */}
       </div>
    
 

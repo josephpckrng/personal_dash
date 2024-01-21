@@ -18,22 +18,11 @@ const Banner = () => {
     setScrollY(window.scrollY);
   };
 
-  useEffect(() => {
-    const handleScrollThrottled = throttle(handleScroll, 100);
-    window.addEventListener('scroll', handleScrollThrottled);
-
-    return () => {
-      window.removeEventListener('scroll', handleScrollThrottled);
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
+  
 
   const bannerHeight = scrollY < 200 ? '1000px' : '500px';
 
-  const heightSpringProps = useSpring({
-    height: bannerHeight,
-    config: { duration: 500 },
-  });
+
 
   useEffect(() => {
     vantaEffect = WAVE({
@@ -41,8 +30,6 @@ const Banner = () => {
       mouseControls: true,
       touchControls: true,
       gyroControls: true,
-      minHeight: 200.00,
-      minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
       color: 0x7cb2cf,
@@ -59,12 +46,14 @@ const Banner = () => {
     <animated.div
       ref={bannerRef}
       style={{
-        ...heightSpringProps,
+        // ...heightSpringProps,
         // backgroundColor: theme.colors.primary[800], // Access Chakra UI theme color
       }}
       className="banner-container"
     >
       <animated.div className="text-container">
+
+
         {/* Use Chakra UI Box component for styled text */}
         <Box as="h1" fontSize="2.75rem" fontWeight="600" mb="10px">
           Your Banner Text

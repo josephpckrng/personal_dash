@@ -3,7 +3,7 @@ header {
     z-index: 99;
     width: 100%;
     padding: 40px !important;
-    z-index: 9992;
+    z-index: 9999;
 }
 
 .card-gallery {

@@ -2,7 +2,7 @@
     margin-top: -20vh;
     height: 40vh;
     position: relative;
-    z-index: 9991;
+    z-index: 999;
 }
 
 .card-container .css-gmuwbf {
@@ -13,4 +13,46 @@
 .card-container .css-gmuwbf .css-uma7ma {
     width: 100%;
     padding: 0 40px;
+}
+
+.chakra-modal__body {
+    width: 100vw;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.chakra-modal__body iframe {
+    height: 90%;
+}
+.chakra-modal__close-btn {
+    z-index: 9999;
+}
+
+.site-container {
+    padding: 0 40px;
+    display: flex;
+}
+
+
+.chakra-modal__content {
+    opacity: 1;
+    transform: none;
+    position: absolute !important;
+    right: 55px;
+    bottom: 50px;   
+    z-index: 99999;
+}
+
+
+.chakra-modal__content button {
+background-color: #000;
+right: 0;
+z-index: 99999;
 }
