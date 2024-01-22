@@ -19,11 +19,10 @@ const App = () => {
       <Siteswiper />
       </div>
       <div className="cricket-container">
+        
      <SplineBlock />
       </div>
-   
 
-      {/* Your main application content goes here */}
     </div>
   );
 };

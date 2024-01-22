@@ -75,3 +75,10 @@ body {
   margin: 0 0 100px 0px;
 }
 
+.w-50 {
+  width: 50%;
+}
+
+.d-flex {
+  display: flex;
+}
