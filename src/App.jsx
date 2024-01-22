@@ -5,6 +5,8 @@ import Banner from './components/banner';
 import Cards from './components/cards';
 import CricketScoreboard from './components/cricket';
 import Siteswiper from './components/site'
+import SplineBlock from './components/spline'
+import SplineLoader from '@splinetool/loader';
 const App = () => {
   return (
     <div>
@@ -17,7 +19,7 @@ const App = () => {
       <Siteswiper />
       </div>
       <div className="cricket-container">
-        {/* <CricketScoreboard /> */}
+     <SplineBlock />
       </div>
    
 
