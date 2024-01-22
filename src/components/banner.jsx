@@ -18,11 +18,22 @@ const Banner = () => {
     setScrollY(window.scrollY);
   };
 
-  
+  useEffect(() => {
+    const handleScrollThrottled = throttle(handleScroll, 100);
+    window.addEventListener('scroll', handleScrollThrottled);
 
-  const bannerHeight = scrollY < 200 ? '1000px' : '500px';
+    return () => {
+      window.removeEventListener('scroll', handleScrollThrottled);
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
 
+  const bannerHeight = scrollY < 200 ? 1000 : 500; // Adjust the values as needed
 
+  const heightSpringProps = useSpring({
+    height: `${bannerHeight}px`,
+    config: { duration: 500 },
+  });
 
   useEffect(() => {
     vantaEffect = WAVE({
@@ -30,6 +41,8 @@ const Banner = () => {
       mouseControls: true,
       touchControls: true,
       gyroControls: true,
+      minHeight: bannerHeight, // Set initial minHeight here
+      minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
       color: 0x7cb2cf,
@@ -40,20 +53,25 @@ const Banner = () => {
     return () => {
       if (vantaEffect) vantaEffect.destroy();
     };
-  }, [vantaEffect]);
+  }, []); // Watch only the initial creation, not heightSpringProps
+
+  useEffect(() => {
+    // Update Vanta.js minHeight directly when scrollY changes
+    if (vantaEffect) {
+      vantaEffect.setOptions({ minHeight: bannerHeight });
+    }
+  }, [scrollY]);
 
   return (
     <animated.div
       ref={bannerRef}
       style={{
-        // ...heightSpringProps,
-        // backgroundColor: theme.colors.primary[800], // Access Chakra UI theme color
+        height: heightSpringProps.height,
+        // other styles here if needed
       }}
       className="banner-container"
     >
       <animated.div className="text-container">
-
-
         {/* Use Chakra UI Box component for styled text */}
         <Box as="h1" fontSize="2.75rem" fontWeight="600" mb="10px">
           Your Banner Text
